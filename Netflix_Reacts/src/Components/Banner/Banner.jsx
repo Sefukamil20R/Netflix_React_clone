@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import movieTrailer from "movie-trailer";
-// import ReactPlayer from "react-player";
+
 import "./Banner.css";
 import axios from "../../utils/axios";
 import  requests from "../../utils/requests";
@@ -10,7 +9,7 @@ import  requests from "../../utils/requests";
  function Banner() {
     const [movie, setMovie] = useState({});
     const movieTitleRef = useRef("");
-    const [trailerUrl, setTrailerUrl] = useState("");
+   
     useEffect(() => {
         (async () => {
           try {
@@ -34,25 +33,7 @@ import  requests from "../../utils/requests";
           }
         })();
       }, []);
-      useEffect(() => {
-        const fetchTrailer = async () => {
-          try {
-            const url = await movieTrailer(movieTitleRef.current);
-            console.log(url);
-            setTrailerUrl(url);
-            const urlParams = new URLSearchParams(new URL(url).search);
-            console.log(urlParams);
-            console.log(urlParams.get("v"));
-            setTrailerUrl(urlParams.get("v"));
-          } catch (error) {
-            console.log("error", error);
-          }
-        };
     
-        const timeoutId = setTimeout(fetchTrailer, 10000);
-    
-        return () => clearTimeout(timeoutId);
-      }, []);
       function truncate(str, n) {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
         // if str.len > given len we cut off the text up to n-1 and add ... else given text it self

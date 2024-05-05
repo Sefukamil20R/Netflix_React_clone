@@ -16,9 +16,11 @@
     "@mui/material": "^5.15.16",
     "axios": "^1.6.8",
     "movie-trailer": "^3.2.2",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-player": "^2.16.0"
+    "react-player": "^2.16.0",
+    "react-youtube": "^10.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
