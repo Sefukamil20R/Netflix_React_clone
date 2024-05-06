@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
-
 import "./Banner.css";
 import axios from "../../utils/axios";
 import  requests from "../../utils/requests";
 
 
 
- function Banner() {
+function Banner() {
     const [movie, setMovie] = useState({});
     const movieTitleRef = useRef("");
+
    
     useEffect(() => {
         (async () => {
@@ -23,6 +23,7 @@ import  requests from "../../utils/requests";
                 Math.floor(Math.random() * request.data.results.length)
               ]
             //   request.data.results[randomly created index]
+            // resulting value ranges from 0 (inclusive) to length - 1 (inclusive),to give valid indices.
             );
     
             movieTitleRef.current =
@@ -33,7 +34,14 @@ import  requests from "../../utils/requests";
           }
         })();
       }, []);
-    
+      //  () This pattern is known as an Immediately Invoked Function Expression (IIFE).it ensures 
+      // that the function defined by (async () => { ... }) is executed immediately after it's defined. 
+      // This is useful in this context because the useEffect hook expects either a synchronous function
+      //  or a function that returns a cleanup function. Wrapping the asynchronous function in an IIFE 
+      //  allows it to be immediately executed without needing to store it in a separate variable or 
+      //  explicitly calling it elsewhere.
+
+
       function truncate(str, n) {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
         // if str.len > given len we cut off the text up to n-1 and add ... else given text it self
@@ -68,8 +76,10 @@ import  requests from "../../utils/requests";
 }
 export default Banner;
 
-
- /*
+// The curly braces {} in JSX are used to embed JavaScript expressions within the JSX code
+// {}: These curly braces indicate that the enclosed expression should be evaluated 
+// as JavaScript within the JSX context.
+/*
   use ref
   When you're reading a book and you want to remember a specific page, you might use a bookmark.
    You can place the bookmark at a certain page, and then you can easily go back to that page later
@@ -87,33 +97,9 @@ export default Banner;
        myRef.current // Access the current value
        myRef.current = newValue // Update the current value
 
- ...... 
-  
 
-  movieTrailer is like library to search for the trailer based on the movie title.
-  It uses movieTrailer(movieTitleRef.current) to fetch the trailer URL for 
-  the movie title stored in movieTitleRef.current. sets it using setTrailerUrl, and then extracts
-   the video ID from the URL using URLSearchParams and sets it again using setTrailerUrl.
-    After defining the fetchTrailer function, a setTimeout is set to call fetchTrailer after
-     5000 milliseconds (5 seconds). This delay might be intended to give the component some time
-    to render before fetching the trailer.a cleanup function is returned from useEffect. 
-    This cleanup function clears the timeout set by setTimeout to prevent memory leaks or 
-    potential issues when the component unmounts or when the effect is re-triggered
 
   */
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

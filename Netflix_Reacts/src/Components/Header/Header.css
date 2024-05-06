@@ -2,7 +2,7 @@
     position: sticky;
     top: 0;
     /* When set to sticky, the element is positioned based on the user's scroll position,
-     sticks to that postion when specifief postio is reached like top , back  This is commonly 
+     sticks to that postion when specifiec postion is reached like top , back  This is commonly 
      used for elements like headers or navigation bars that you want to remain visible as the user 
      scrolls down the page.  */
     display: flex;
