@@ -1,8 +1,7 @@
 import Row from "../Row/Row";
 import  requests from "../../../utils/requests";
 import React from 'react'
-
- function Rowlist() {
+function Rowlist() {
   return (
     <>
       <Row
@@ -21,5 +20,4 @@ import React from 'react'
     </>
   )
 }
-
 export default  Rowlist;

@@ -1,0 +1,67 @@
+  movieTitleRef.current =
+            //   movie?.title || movie?.name || movie?.original_name;
+              // either of three if exits in reference to thier order
+The curly braces {} in JSX are used to embed JavaScript expressions within the JSX code
+ {}: These curly braces indicate that the enclosed expression should be evaluated 
+ as JavaScript within the JSX context.
+
+  use ref
+  When you're reading a book and you want to remember a specific page, you might use a bookmark.
+   You can place the bookmark at a certain page, and then you can easily go back to that page later
+    without having to flip through the entire book again. The bookmark doesn't change the content of the book; 
+    it just helps you remember where you left off.Similarly, in React, useRef is like a bookmark for
+     your components. You can use it to "bookmark" a value or a DOM element so that you can easily 
+     access it later without causing the component to re-render. like in this we  have a component
+      that displays a list of items, and you want to remember the currently selected item without 
+      causing the component to re-render every time the selection changes. You can use useRef to 
+      create a "bookmark" for the selected item. This way, you can update the selected item without
+       triggering a re-render of the component.
+       intalization 
+       const myRef = useRef(initialValue);
+       the to update we can use current property 
+       myRef.current // Access the current value
+       myRef.current = newValue // Update the current value
+ () This pattern is known as an Immediately Invoked Function Expression (IIFE).it ensures 
+     that the function defined by (async () => { ... }) is executed immediately after it's defined. 
+    This is useful in this context because the useEffect hook expects either a synchronous function
+  or a function that returns a cleanup function. Wrapping the asynchronous function in an IIFE 
+      allows it to be immediately executed without needing to store it in a separate variable or 
+      explicitly calling it elsewhere.
+position: sticky;
+    top: 0;
+    /* When set to sticky, the element is positioned based on the user's scroll position,
+     sticks to that postion when specifiec postion is reached like top , back  This is commonly 
+     used for elements like headers or navigation bars that you want to remain visible as the user 
+     scrolls down the page.  */
+/* movie trailor returns url / youtube url of vedio */
+*
+const handleClick = (movie) => {
+        if (trailerUrl) {
+          setTrailerUrl("");
+        } else {
+          movieTrailer(movie?.title || movie?.name || movie?.original_name).then(
+            (url) => {
+              const urlParams = new URLSearchParams(new URL(url).search);
+              setTrailerUrl(urlParams.get("v"));
+            }
+          );
+        }
+      };
+It checks if trailerUrl is truthy (i.e., it contains a value). If trailerUrl is truthy, 
+it means that a trailer is currently being displayed. In that case, it resets trailerUrl
+to an empty string, effectively closing the trailer.
+
+If trailerUrl is not truthy (meaning no trailer is currently being displayed), 
+it proceeds to the else block.This line uses the movieTrailer function to fetch the URL 
+of a trailer for the given movie. It checks if the movie has a title (movie?.title), and if not, 
+it checks if it has a name (movie?.name), and if that's not available either, it checks for the 
+original name (movie?.original_name). It then uses the .then() method to handle the result of the 
+asynchronous operation.This line creates a new URLSearchParams object by parsing the query string 
+portion of the trailer URL retrieved in the previous step. This is done by first creating a new URL 
+object with the trailer URL, and then accessing its search property, which contains the query string.
+Finally, this line sets the trailerUrl state variable to the value of the "v" parameter in the query 
+string. This typically represents the video ID of the trailer on platforms like YouTube. Setting this
+ value will trigger a re-render of the component, causing the trailer to be displayed.
+*/
+
+
